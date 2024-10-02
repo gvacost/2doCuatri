@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var prof_1 = require("./prof");
+var Alumno_1 = require("./Alumno");
+var escuela_1 = require("./escuela");
+var profesor = new escuela_1.Escuela('Historia');
+var alumno1 = new Alumno_1.Alumno('Gonzalo', 'Acosta', 28);
+var alumno2 = new Alumno_1.Alumno('Ornella', 'Minotti', 29);
+var materia = new prof_1.Profesor('Juan', 'Perez');
+profesor.ingresoMatricula(alumno1);
+profesor.ingresoMatricula(alumno2);
+console.log('Profesor: ' + profesor.mostrarProfesor() + ' ' + profesor.getMateria() + '\nAlumnos: ' + '\n' + materia.mostrarAlumno());
