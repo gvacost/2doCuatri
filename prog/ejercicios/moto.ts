@@ -1,36 +1,42 @@
-export class Moto{
-    private patente :string;
-    private modelo:string;
-    private marca:string;
+import { Vehiculo } from "./vehiculo";
 
-    constructor(patente:string, modelo:string, marca:string){
-        this.patente = patente;
-        this.modelo = modelo;
-        this.marca = marca;
-    }
+export class Moto extends Vehiculo{
+    // private patente :string;
+    // private modelo:string;
+    // private marca:string;
+    private rodado:string;
 
-    public getPatente():string{
-        return this.patente;
-    }
-    public setPatente(motoPatente:string):void{
-        this.patente = motoPatente;
+    constructor(patente:string, modelo:string, marca:string, rodado:string){
+        // this.patente = patente;
+        // this.modelo = modelo;
+        // this.marca = marca;
+        super(patente, modelo, marca)
+        this.rodado = rodado;
     }
 
-    public getModelo():string{
-        return this.modelo;
+
+    public getRodado():string{
+        return this.rodado;
     }
-    public setModelo(motoModelo:string):void{
-        this.modelo = motoModelo;
+    public setPatente(motoRodado:string):void{
+        this.rodado = motoRodado;
     }
 
-    public getMarca():string{
-        return this.marca;
-    }
-    public setMarca(motoMarca:string):void{
-        this.marca = motoMarca;
-    }
+    // public getModelo():string{
+    //     return this.modelo;
+    // }
+    // public setModelo(motoModelo:string):void{
+    //     this.modelo = motoModelo;
+    // }
 
-    public agruparMotoData():string{
-        return `Marca: ${this.marca}, Modelo: ${this.modelo}, Patente: ${this.patente}`;
-    }
+    // public getMarca():string{
+    //     return this.marca;
+    // }
+    // public setMarca(motoMarca:string):void{
+    //     this.marca = motoMarca;
+    // }
+
+    // public agruparMotoData():string{
+    //     return `Marca: ${this.marca}, Modelo: ${this.modelo}, Patente: ${this.patente}`;
+    // }
 }

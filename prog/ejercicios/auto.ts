@@ -1,38 +1,42 @@
+import { Vehiculo } from "./vehiculo";
 
-export class Auto{
-    private patente :string;
-    private modelo:string;
-    private marca:string;
+export class Auto extends Vehiculo{
+    // private patente :string;
+    // private modelo:string;
+    // private marca:string;
+    private puertas:string;
 
 
-    constructor(patente:string, modelo:string, marca:string){
-        this.patente = patente;
-        this.modelo = modelo;
-        this.marca = marca;
-    }
-
-    public getPatente():string{
-        return this.patente;
-    }
-    public setPatente(autoPatente:string):void{
-        this.patente = autoPatente;
+    constructor(patente:string, modelo:string, marca:string, puertas:string){
+        // this.patente = patente;
+        // this.modelo = modelo;
+        // this.marca = marca;
+        super(patente, modelo, marca);
+        this.puertas = puertas;
     }
 
-    public getModelo():string{
-        return this.modelo;
+    public getPuertas():string{
+        return this.puertas;
     }
-    public setModelo(autoModelo:string):void{
-        this.modelo = autoModelo;
-    }
-
-    public getMarca():string{
-        return this.marca;
-    }
-    public setMarca(autoMarca:string):void{
-        this.marca = autoMarca;
+    public setPuertas(autoPuertas:string):void{
+        this.puertas = autoPuertas;
     }
 
-    public agruparAutoData():string{
-        return `Marca: ${this.marca}, Modelo: ${this.modelo}, Patente: ${this.patente}`;
-    }
+    // public getModelo():string{
+    //     return this.modelo;
+    // }
+    // public setModelo(autoModelo:string):void{
+    //     this.modelo = autoModelo;
+    // }
+
+    // public getMarca():string{
+    //     return this.marca;
+    // }
+    // public setMarca(autoMarca:string):void{
+    //     this.marca = autoMarca;
+    // }
+
+    // public agruparAutoData():string{
+    //     return `Marca: ${this.marca}, Modelo: ${this.modelo}, Patente: ${this.patente}`;
+    // }
 }
