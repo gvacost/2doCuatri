@@ -1,8 +1,8 @@
 
 export class Vehiculo{
-    private patente :string;
-    private modelo:string;
-    private marca:string;
+    protected patente :string;
+    protected modelo:string;
+    protected marca:string;
 
 
     constructor(patente:string, modelo:string, marca:string){
