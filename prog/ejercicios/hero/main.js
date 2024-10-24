@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var mago_1 = require("./mago");
+var luchador_1 = require("./luchador");
+var arquero_1 = require("./arquero");
+var magic = new mago_1.Mago('Veigar', 750, 3, 400);
+var lucha = new luchador_1.Luchador('Sett', 1200, 350);
+var arqueero = new arquero_1.Arquero('Ashe', 600, 4, 450);
+magic.setAttack();
+magic.setDefend();
+lucha.setAttack();
+lucha.setDefend();
+// magic.GetAttack();
+magic.GetDefend();
+magic.setVida();
+magic.getVida();
