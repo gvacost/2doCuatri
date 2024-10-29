@@ -19,8 +19,8 @@ exports.Mago = void 0;
 var personaje_1 = require("./personaje");
 var Mago = /** @class */ (function (_super) {
     __extends(Mago, _super);
-    function Mago(nombre, puntosDeVida, alcance, pAbility) {
-        var _this = _super.call(this, nombre, puntosDeVida) || this;
+    function Mago(nombre, puntosDeVida, time, alcance, pAbility) {
+        var _this = _super.call(this, nombre, puntosDeVida, time) || this;
         _this.defensa = 0;
         _this.ataque = 0;
         _this.alcance = alcance;
@@ -28,28 +28,31 @@ var Mago = /** @class */ (function (_super) {
         return _this;
     }
     Mago.prototype.GetAttack = function () {
-        console.log('Alcanzaste a tu enemigo, infligiste ' + (this.ataque) + ' de daño');
         return this.ataque;
+    };
+    Mago.prototype.mencionAtaque = function () {
+        console.log(this.nombre + ': Alcanzaste a tu enemigo, infligiste ' + (this.ataque) + ' de daño');
     };
     Mago.prototype.setAttack = function () {
         this.ataque = 0.7 * this.powerAbility + this.alcance;
     };
     Mago.prototype.GetDefend = function () {
-        return console.log('Usaste el escudo magico, te defendiste ' + (this.defensa) + ' de daño');
+        return console.log(this.nombre + ': Usaste el escudo magico, te defendiste ' + (this.defensa) + ' de daño');
     };
     Mago.prototype.setDefend = function () {
         this.defensa = 0.5 * this.powerAbility;
     };
     Mago.prototype.getVida = function () {
         if (this.puntosDeVida > 0) {
-            return console.log('Sigues vivo');
+            console.log('Sigues vivo, tu vida actual es: ' + this.puntosDeVida);
         }
         else {
-            return console.log('Moriste');
+            console.log('Moriste');
         }
     };
     Mago.prototype.setVida = function (fighter, archer) {
         if (fighter && this.defensa < (fighter === null || fighter === void 0 ? void 0 : fighter.GetAttack())) {
+            fighter.mencionAtaque();
             this.puntosDeVida = (this.puntosDeVida - ((fighter === null || fighter === void 0 ? void 0 : fighter.GetAttack()) - this.defensa));
         }
         else if (archer && this.defensa < (archer === null || archer === void 0 ? void 0 : archer.GetAttack())) {
@@ -57,6 +60,14 @@ var Mago = /** @class */ (function (_super) {
         }
         else {
             this.puntosDeVida = this.puntosDeVida;
+        }
+    };
+    Mago.prototype.getLevel = function () {
+        return this.level;
+    };
+    Mago.prototype.setLevel = function () {
+        for (var i = 0; i < this.time; i + 2) {
+            this.level += 1;
         }
     };
     return Mago;

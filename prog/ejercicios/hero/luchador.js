@@ -19,43 +19,69 @@ exports.Luchador = void 0;
 var personaje_1 = require("./personaje");
 var Luchador = /** @class */ (function (_super) {
     __extends(Luchador, _super);
-    function Luchador(nombre, puntosDeVida, pAttack) {
-        var _this = _super.call(this, nombre, puntosDeVida) || this;
+    function Luchador(nombre, puntosDeVida, time, pAttack) {
+        var _this = _super.call(this, nombre, puntosDeVida, time) || this;
         _this.alcance = 1;
         _this.powerAttack = pAttack;
         return _this;
     }
     Luchador.prototype.GetAttack = function () {
-        console.log('Golpeaste a tu enemigo, infligiste ' + (this.ataque) + ' de daño');
         return this.ataque;
+    };
+    Luchador.prototype.mencionAtaque = function () {
+        console.log(this.nombre + ': Golpeaste a tu enemigo, infligiste ' + (this.ataque) + ' de daño');
     };
     Luchador.prototype.setAttack = function () {
         this.ataque = 0.7 * this.powerAttack + this.alcance;
     };
     Luchador.prototype.GetDefend = function () {
-        return console.log('Usaste el escudo magico, te defendiste ' + (this.defensa) + ' de daño');
+        return console.log(this.nombre + ': Usaste tus brazos para defenderte ' + (this.defensa) + ' de daño');
     };
     Luchador.prototype.setDefend = function () {
-        this.defensa = 0.5 * this.powerAttack;
+        this.defensa = 0.3 * this.powerAttack;
     };
     Luchador.prototype.getVida = function () {
         if (this.puntosDeVida > 0) {
-            return console.log('Sigues vivo');
+            console.log('Sigues vivo, tu vida actual es: ' + this.puntosDeVida);
         }
         else {
-            return console.log('Moriste');
+            console.log('Moriste');
         }
     };
     Luchador.prototype.setVida = function (mago, archer) {
         if (mago && this.defensa < (mago === null || mago === void 0 ? void 0 : mago.GetAttack())) {
+            mago.mencionAtaque();
             this.puntosDeVida = (this.puntosDeVida - ((mago === null || mago === void 0 ? void 0 : mago.GetAttack()) - this.defensa));
         }
         else if (archer && this.defensa < (archer === null || archer === void 0 ? void 0 : archer.GetAttack())) {
+            archer.mencionAtaque();
             this.puntosDeVida = (this.puntosDeVida - ((archer === null || archer === void 0 ? void 0 : archer.GetAttack()) - this.defensa));
         }
         else {
             this.puntosDeVida = this.puntosDeVida;
         }
+    };
+    Luchador.prototype.getLevel = function () {
+        return this.level;
+    };
+    Luchador.prototype.setLevel = function () {
+        var lvl = 0;
+        for (var i = 0; i <= this.time; i += 3) {
+            lvl += 1;
+        }
+        this.level = lvl;
+    };
+    Luchador.prototype.getPAttack = function () {
+        return this.powerAttack;
+    };
+    Luchador.prototype.getName = function () {
+        return this.nombre;
+    };
+    Luchador.prototype.getTime = function () {
+        return this.time;
+    };
+    Luchador.prototype.getPVida = function () {
+        return this.puntosDeVida;
     };
     return Luchador;
 }(personaje_1.Personaje));

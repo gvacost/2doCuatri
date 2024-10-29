@@ -3,27 +3,29 @@ import { Luchador } from "./luchador";
 import { Arquero } from "./arquero";
 
 export class Mago extends Personaje{
-    private alcance:number;
-    private powerAbility:number;
+    protected alcance:number;
+    protected powerAbility:number;
     private defensa: number = 0;
     private ataque:number = 0;
 
-    constructor(nombre:string, puntosDeVida:number, alcance:number, pAbility:number) {
-        super(nombre, puntosDeVida);
+    constructor(nombre:string, puntosDeVida:number, time:number, alcance:number, pAbility:number) {
+        super(nombre, puntosDeVida, time);
         this.alcance = alcance;
         this.powerAbility = pAbility;
 
     }
 
     public GetAttack(){
-        console.log('Alcanzaste a tu enemigo, infligiste '+(this.ataque)+' de daño');
         return this.ataque;
+    }
+    public mencionAtaque():void{
+        console.log(this.nombre+': Alcanzaste a tu enemigo, infligiste '+(this.ataque)+' de daño');
     }
     public setAttack():void{
         this.ataque = 0.7*this.powerAbility + this.alcance;
     }
     public GetDefend(){
-        return console.log('Usaste el escudo magico, te defendiste '+(this.defensa)+' de daño')
+        return console.log(this.nombre+': Usaste el escudo magico, te defendiste '+(this.defensa)+' de daño')
     }
     public setDefend():void{
         this.defensa = 0.5*this.powerAbility;
@@ -31,14 +33,15 @@ export class Mago extends Personaje{
 
     public getVida(){
         if(this.puntosDeVida > 0 ){
-           return console.log('Sigues vivo')
+            console.log(this.nombre+': Sigues vivo, tu vida actual es: '+this.puntosDeVida)
         }else{
-            return console.log('Moriste');
+             console.log(this.nombre+': Moriste');
         }
     }
     public setVida(fighter?:Luchador, archer?:Arquero):void{
         if(fighter && this.defensa<fighter?.GetAttack()){
-        this.puntosDeVida = (this.puntosDeVida-(fighter?.GetAttack()-this.defensa))
+            fighter.mencionAtaque();
+            this.puntosDeVida = (this.puntosDeVida-(fighter?.GetAttack()-this.defensa))
         }
         else if( archer && this.defensa < archer?.GetAttack()){
             this.puntosDeVida = (this.puntosDeVida-(archer?.GetAttack()-this.defensa))
@@ -46,6 +49,14 @@ export class Mago extends Personaje{
         }
         else{
             this.puntosDeVida = this.puntosDeVida;
+        }
+    }
+    public getLevel(){
+        return this.level;
+    }
+    public setLevel(){
+        for(let i:number =0; i<this.time; i+2){
+            this.level+=1;
         }
     }
    
